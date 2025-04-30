@@ -5,10 +5,15 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\LibrosController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\SocialiteController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('socialite.redirect');
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('socialite.callback');
+Route::get('/auth/redirect/{provider}', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
 
 // Rutas públicas
 Route::get('/ingresar', [UsuariosController::class, 'index'])->name('usuarios.index');

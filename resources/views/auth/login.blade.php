@@ -25,6 +25,12 @@
             <!-- Botón para ingresar usuario -->
             <a href="{{ route('usuarios.index') }}" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 cursor-pointer text-center ml-2">Ingresar Usuario</a>
         </div>
+        <a href="{{ route('socialite.redirect', 'google') }}" class="btn btn-google">
+            Iniciar sesión con Google
+        </a>
+        <a href="{{ route('socialite.redirect', 'facebook') }}" class="btn btn-facebook">
+            Iniciar sesión con Facebook
+        </a>
     </form>
 </div>
 
