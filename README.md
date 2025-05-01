@@ -71,6 +71,10 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
      GOOGLE_CLIENT_ID=tu-google-client-id
      GOOGLE_CLIENT_SECRET=tu-google-client-secret
      GOOGLE_REDIRECT_URL=http://127.0.0.1:8000/login/google/callback
+
+     GITHUB_CLIENT_ID=tu-client-id
+     GITHUB_CLIENT_SECRET=tu-client-secret
+     GITHUB_REDIRECT_URL=http://127.0.0.1:8000/login/github/callback
      ```
 
 5. Genera la clave de la aplicación:
