@@ -10,7 +10,7 @@
         <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div class="p-6">
                 <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-5">Agregar Usuario</h2>
-                <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data" id="userForm">
                     @csrf
 
                     <!-- Nombre -->
@@ -44,6 +44,12 @@
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Debe tener al menos 8 caracteres, incluir una letra mayúscula y un carácter especial.</p>
                     </div>
 
+                    <!-- Confirmar Contraseña -->
+                    <div class="mb-4">
+                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirmar Contraseña</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="block w-full mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                    </div>
+
                     <!-- Foto -->
                     <div class="mb-4">
                         <label for="foto" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Foto</label>
@@ -63,5 +69,17 @@
 
 <main>
 </main>
+
+<script>
+    document.getElementById('userForm').addEventListener('submit', function (e) {
+        const password = document.getElementById('password').value;
+        const passwordConfirmation = document.getElementById('password_confirmation').value;
+
+        if (password !== passwordConfirmation) {
+            e.preventDefault();
+            alert('Las contraseñas no coinciden. Por favor, verifica e inténtalo de nuevo.');
+        }
+    });
+</script>
 
 @endsection
