@@ -8,12 +8,12 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\SocialiteController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('usuarios.index');
 });
 
-Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('socialite.redirect');
-Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('socialite.callback');
-Route::get('/auth/redirect/{provider}', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+// Rutas para autenticación con proveedores dinámicos (Google y Facebook)
+Route::get('/login/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('socialite.redirect');
+Route::get('/login/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('socialite.callback');
 
 // Rutas públicas
 Route::get('/ingresar', [UsuariosController::class, 'index'])->name('usuarios.index');
