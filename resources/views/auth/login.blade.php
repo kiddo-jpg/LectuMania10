@@ -37,12 +37,12 @@
             Iniciar sesión con Google
         </a>
         
-        <!-- Botón para iniciar sesión con Facebook -->
-        <a href="{{ route('socialite.redirect', 'facebook') }}" class="flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 cursor-pointer">
-            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path fill="#FFFFFF" d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.464.099 2.795.143v3.24h-1.918c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.324-.593 1.324-1.324V1.325C24 .593 23.407 0 22.675 0z"/>
+        <!-- Botón para iniciar sesión con GitHub -->
+        <a href="{{ route('socialite.redirect', 'github') }}" class="flex items-center justify-center bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-900 cursor-pointer">
+            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.997.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.007-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.045.138 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.62-5.478 5.92.43.37.823 1.102.823 2.22v3.293c0 .32.22.694.825.576C20.565 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/>
             </svg>
-            Iniciar sesión con Facebook
+            Iniciar sesión con GitHub
         </a>
     </form>
 </div>
