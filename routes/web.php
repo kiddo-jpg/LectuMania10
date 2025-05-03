@@ -6,12 +6,13 @@ use App\Http\Controllers\LibrosController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\PayPalController;
 
 Route::get('/', function () {
     return view('usuarios.index');
 });
 
-// Rutas para autenticación con proveedores dinámicos (Google y Facebook)
+// Rutas para autenticación con proveedores dinámicos (Google y GitHub)
 Route::get('/login/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('socialite.redirect');
 Route::get('/login/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('socialite.callback');
 
@@ -55,3 +56,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 // Ruta para cerrar sesión
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('paypal', [PayPalController::class, 'index'])->name('paypal');
+
+Route::get('paypal/payment', [PayPalController::class, 'payment'])->name('paypal.payment');
+
+Route::get('paypal/payment/success', [PayPalController::class, 'paymentSuccess'])->name('paypal.payment.success');
+
+Route::get('/paypal/cancel', [PayPalController::class, 'paymentCancel'])->name('paypal.payment.cancel');
