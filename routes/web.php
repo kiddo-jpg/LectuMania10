@@ -7,6 +7,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\GeolocationController;
+
+Route::get('/geolocation', [GeolocationController::class, 'getCoordinates'])->name('geolocation');
 
 Route::get('/', function () {
     return view('usuarios.index');
