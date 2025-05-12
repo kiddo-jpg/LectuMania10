@@ -47,6 +47,7 @@ class UsuariosController extends Controller
             'telefono' => 'nullable|numeric',
             'foto'     => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'estado'   => 'required|boolean', // Validar que el estado sea booleano
+            'rol'      => 'required|in:master,middle,basic,usuario', // Validar que el rol sea válido
             'password' => [
                 'nullable',
                 'min:8',
@@ -59,7 +60,8 @@ class UsuariosController extends Controller
         $usuario->usuario = $request->usuario;
         $usuario->email = $request->email;
         $usuario->telefono = $request->telefono;
-        $usuario->estado = $request->estado; // Asegúrate de asignar el estado
+        $usuario->estado = $request->estado;
+        $usuario->rol = $request->rol; // Actualizar el rol
 
         // Si se sube una nueva foto, reemplazar la existente
         if ($request->hasFile('foto')) {
@@ -103,6 +105,7 @@ class UsuariosController extends Controller
                 'min:8',
                 'regex:/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};\'":\\|,.<>\/?]).+$/'
             ],
+            'rol'      => 'required|in:master,middle,basic,usuario', // Validar el rol
         ]);
 
         // Crear el usuario y encriptar la contraseña

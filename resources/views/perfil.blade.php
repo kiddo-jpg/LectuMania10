@@ -40,12 +40,14 @@
         </div>
     </form>
 
+    @if (@auth()->user()->rol === 'master')
     <!-- Formulario para eliminar cuenta -->
     <form action="{{ route('perfil.eliminar') }}" method="POST" class="mt-4" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.')">
         @csrf
         @method('DELETE')
         <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 cursor-pointer">Eliminar Cuenta</button>
     </form>
+    @endif
 </div>
 
 <main>

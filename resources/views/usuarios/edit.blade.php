@@ -42,7 +42,9 @@
                     <div class="mb-4">
                         <label for="rol" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Rol</label>
                         <select name="rol" id="rol" class="block w-full mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="admin" {{ $usuario->rol === 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="master" {{ $usuario->rol === 'master' ? 'selected' : '' }}>Master</option>
+                            <option value="middle" {{ $usuario->rol === 'middle' ? 'selected' : '' }}>Middle</option>
+                            <option value="basic" {{ $usuario->rol === 'basic' ? 'selected' : '' }}>Basic</option>
                             <option value="usuario" {{ $usuario->rol === 'usuario' ? 'selected' : '' }}>Usuario</option>
                         </select>
                     </div>

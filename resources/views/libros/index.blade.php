@@ -48,11 +48,10 @@
     <li>
         <a href="{{ route('carrito.index') }}" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Carrito</a>
     </li>
-    @if (auth()->user()->rol === 'admin')
+    @if (auth()->user()->rol === 'master' || auth()->user()->rol === 'middle' || auth()->user()->rol === 'basic')
     <li>
         <a href="{{ route('usuarios.tablausuarios') }}" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Usuarios</a>
     </li>
-    
     @endif
   </ul>
 </div>
@@ -68,7 +67,7 @@
         <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
                 <div class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-between md:space-y-0 md:space-x-3">
-                    @if (auth()->user()->rol === 'admin')
+                    @if (auth()->user()->rol === 'master')
                     <a href="{{ route('libros.create') }}" class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
@@ -78,12 +77,14 @@
                     @endif
                 
                     <!-- Botón para agregar todo -->
+                    @if (auth()->user()->rol === 'master' || auth()->user()->rol === 'middle' || auth()->user()->rol === 'basic' || auth()->user()->rol === 'usuario')
                     <button id="agregarTodo" class="ml-auto flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 rounded-lg focus:outline-none dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 cursor-pointer">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
                         </svg>
                         Agregar Todo
                     </button>
+                     @endif
                 </div>
             </div>
             <div class="overflow-x-auto">
@@ -111,7 +112,7 @@
                             <th scope="col" class="px-4 py-3">Precio</th>
                             <th scope="col" class="px-4 py-3">Estado</th>
                             <th scope="col" class="px-4 py-3">Portada</th>
-                            @if (auth()->user()->rol === 'admin')
+                            @if (auth()->user()->rol === 'master' || auth()->user()->rol === 'middle')
                                 <th scope="col" class="px-4 py-3">Acciones</th>
                             @endif
                             <th scope="col" class="px-4 py-3">Agregar al Carrito</th>
@@ -168,7 +169,7 @@
                                     N/A
                                 @endif
                             </td>
-                            @if (auth()->user()->rol === 'admin')
+                            @if (auth()->user()->rol === 'master' || auth()->user()->rol === 'middle')
                             <td>
                                 <div class="flex flex-col space-y-2">
                                     <!-- Botón para editar -->

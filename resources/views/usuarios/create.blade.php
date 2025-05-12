@@ -50,11 +50,23 @@
                         <input type="password" name="password_confirmation" id="password_confirmation" class="block w-full mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
                     </div>
 
+                    <!-- Rol -->
+                    <div class="mb-4">
+                        <label for="rol" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Rol</label>
+                        <select name="rol" id="rol" class="block w-full mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                            <option value="master">Master</option>
+                            <option value="middle">Middle</option>
+                            <option value="basic">Basic</option>
+                            <option value="usuario">Usuario</option>
+                        </select>
+                    </div>
+
                     <!-- Foto -->
                     <div class="mb-4">
                         <label for="foto" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Foto</label>
                         <input type="file" name="foto" id="foto" class="block w-full mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     </div>
+
 
                     <!-- Botones -->
                     <div class="flex justify-end space-x-4">
@@ -69,6 +81,16 @@
 
 <main>
 </main>
+
+@if ($errors->any())
+    <div class="mb-4 text-red-600">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <script>
     document.getElementById('userForm').addEventListener('submit', function (e) {
