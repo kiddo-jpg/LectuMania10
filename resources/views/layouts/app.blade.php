@@ -14,7 +14,7 @@
         }
         main {
             flex: 1;
-            display: flex; /* Añadido */
+            display: flex; 
             justify-content: center; /* Centrar horizontalmente */
             align-items: center; /* Centrar verticalmente */
         }
