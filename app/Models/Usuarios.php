@@ -27,4 +27,9 @@ class Usuarios extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    // Valor predeterminado para el campo "rol"
+    protected $attributes = [
+        'rol' => 'usuario',
+    ];
 }

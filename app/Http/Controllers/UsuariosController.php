@@ -98,17 +98,16 @@ class UsuariosController extends Controller
             'nombre'   => 'required|min:2',
             'usuario'  => 'required|min:2',
             'email'    => 'required|email|unique:usuarios,email',
-            'telefono' => 'required|numeric',
+            'telefono' => 'nullable|numeric',
             'foto'     => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validar la imagen
             'password' => [
                 'required',
                 'min:8',
                 'regex:/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};\'":\\|,.<>\/?]).+$/'
             ],
-            'rol'      => 'required|in:master,middle,basic,usuario', // Validar el rol
         ]);
 
-        // Crear el usuario y encriptar la contraseña
+        // Crear el usuario y asignar el rol por defecto si no se envía
         $usuario = Usuarios::create([
             'nombre'   => $request->nombre,
             'usuario'  => $request->usuario,
@@ -116,6 +115,7 @@ class UsuariosController extends Controller
             'telefono' => $request->telefono,
             'foto'     => $request->file('foto') ? $request->file('foto')->store('fotos', 'public') : null, // Guardar la ruta de la foto
             'password' => Hash::make($request->password), // Encriptar la contraseña
+            'rol'      => $request->rol ?? 'usuario', // Asignar "usuario" si no se envía un rol
         ]);
 
         // Redirige al formulario de login con un mensaje de éxito
