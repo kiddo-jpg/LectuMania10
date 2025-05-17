@@ -16,7 +16,7 @@ class SocialiteController extends Controller
      */
     public function redirectToProvider($provider)
     {
-        // Validar que el proveedor sea válido (google o facebook)
+        // Validar que el proveedor sea válido (google o github)
         if (!in_array($provider, ['google', 'github'])) {
             abort(404, 'Proveedor no soportado.');
         }

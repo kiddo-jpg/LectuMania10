@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pedidos', [\App\Http\Controllers\PedidoController::class, 'index'])->name('pedidos.index');
     Route::get('/pedidos/{id}', [\App\Http\Controllers\PedidoController::class, 'show'])->name('pedidos.show');
     Route::delete('/pedidos/{id}', [\App\Http\Controllers\PedidoController::class, 'destroy'])->name('pedidos.destroy');
+    Route::delete('/pedidos', [\App\Http\Controllers\PedidoController::class, 'destroyAll'])->name('pedidos.destroyAll');
 
     // Carrito
     Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');

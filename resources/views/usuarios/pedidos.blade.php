@@ -60,6 +60,15 @@
 </div> 
 
 <div class="container mx-auto px-4 py-6">
+    @if(auth()->user()->rol === 'master' && !$pedidos->isEmpty())
+        <form action="{{ route('pedidos.destroyAll') }}" method="POST" class="mb-4">
+            @csrf
+            @method('DELETE')
+            <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar TODOS los pedidos?')" class="bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg px-5 py-2.5">
+                Eliminar Todos los Pedidos
+            </button>
+        </form>
+    @endif
     <h1 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Administración de Pedidos</h1>
 
     @if(session('error'))

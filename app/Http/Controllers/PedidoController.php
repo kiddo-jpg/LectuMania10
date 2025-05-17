@@ -36,8 +36,33 @@ class PedidoController extends Controller
             return redirect()->route('pedidos.index')->with('error', 'No tienes autorización para eliminar pedidos.');
         }
 
+        // Reingresar la cantidad al inventario del libro
+        $libro = $pedido->libro;
+        if ($libro) {
+            $libro->numeroEjemplares += $pedido->cantidad;
+            $libro->save();
+        }
+
         $pedido->delete();
 
-        return redirect()->route('pedidos.index')->with('success', 'Pedido eliminado correctamente.');
+        return redirect()->route('pedidos.index')->with('success', 'Pedido eliminado correctamente y libros reingresados al inventario.');
+    }
+    public function destroyAll()
+    {
+        if (auth()->user()->rol !== 'master') {
+            return redirect()->route('pedidos.index')->with('error', 'No tienes autorización para eliminar todos los pedidos.');
+        }
+
+        $pedidos = Pedido::with('libro')->get();
+
+        foreach ($pedidos as $pedido) {
+            if ($pedido->libro) {
+                $pedido->libro->numeroEjemplares += $pedido->cantidad;
+                $pedido->libro->save();
+            }
+            $pedido->delete();
+        }
+
+        return redirect()->route('pedidos.index')->with('success', 'Todos los pedidos han sido eliminados y los libros reingresados al inventario.');
     }
 }
