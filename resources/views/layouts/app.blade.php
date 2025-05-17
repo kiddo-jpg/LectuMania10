@@ -62,3 +62,9 @@
             </ul>
             </div>
         </footer>
+
+        @if(session('error'))
+            <script>
+                alert('{{ session('error') }}');
+            </script>
+        @endif

@@ -8,6 +8,7 @@ use App\Models\Libros; // Asegúrate de importar el modelo Libros
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log; // Importar la clase Log para registrar eventos
+use App\Models\Pedido; // Importar el modelo Pedido
 
 
 class UsuariosController extends Controller
@@ -19,8 +20,13 @@ class UsuariosController extends Controller
 
     public function tabla()
     {
-        $usuarios = Usuarios::all(); // Obtener todos los usuarios de la base de datos
-        return view('usuarios.tablausuarios', compact('usuarios')); // Pasar los usuarios a la vista
+        // Verifica si el usuario autenticado tiene el rol 'usuario'
+        if (auth()->user()->rol === 'usuario') {
+            return redirect()->back()->with('error', 'No tienes autorización para acceder a esta página.');
+        }
+
+        $usuarios = Usuarios::all();
+        return view('usuarios.tablausuarios', compact('usuarios'));
     }
 
     public function edit($id)
@@ -120,5 +126,18 @@ class UsuariosController extends Controller
 
         // Redirige al formulario de login con un mensaje de éxito
         return redirect()->route('login')->with('success', 'Usuario registrado exitosamente. Por favor, inicia sesión.');
+    }
+
+    public function pedidos()
+    {
+        // Solo permitir acceso si el usuario NO es 'usuario'
+        if (auth()->user()->rol === 'usuario') {
+            return redirect()->back()->with('error', 'No tienes autorización para acceder a esta página.');
+        }
+
+        // Obtener todos los pedidos con la relación de usuario y libro (ajusta según tu modelo)
+        $pedidos = Pedido::with(['usuario', 'libro'])->get();
+
+        return view('usuarios.pedidos', compact('pedidos'));
     }
 }

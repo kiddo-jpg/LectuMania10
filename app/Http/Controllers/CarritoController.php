@@ -9,6 +9,7 @@ use App\Models\Libros; // Importar el modelo Libro
 use App\Models\Usuarios; // Asegúrate de importar el modelo Usuarios
 use App\Models\Carrito;
 use App\Models\CarritoItem; // Asegúrate de importar el modelo CarritoItem
+use App\Models\Pedido;
 
 class CarritoController extends Controller
 {
@@ -98,5 +99,28 @@ class CarritoController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    public function finalizarCompra(Request $request)
+    {
+        $carrito = Carrito::with('items.libro')->where('usuario_id', Auth::id())->first();
+
+        if (!$carrito || $carrito->items->isEmpty()) {
+            return back()->with('error', 'Tu carrito está vacío.');
+        }
+
+        foreach ($carrito->items as $item) {
+            Pedido::create([
+                'usuario_id' => Auth::id(),
+                'libro_id'   => $item->libro_id,
+                'cantidad'   => $item->cantidad,
+                'estado'     => 'pendiente',
+            ]);
+        }
+
+        // Vaciar el carrito después de crear los pedidos
+        $carrito->items()->delete();
+
+        return back()->with('success', '¡Pedido realizado correctamente!');
     }
 }
